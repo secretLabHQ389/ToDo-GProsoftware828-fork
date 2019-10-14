@@ -1,49 +1,132 @@
 import React from 'react';
-import { ToDo } from './ToDo/ToDo';
-import './App.css';
 
-class App extends React.Component {
-  state = {
-    todos: [
-      { note: 'First todo to do of the day!', status: 0 },
-      { note: 'First completed todo!', status: 1 }
-    ],
-    showTopics: false
-  };
+export class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      todos: ['note one', 'note two', 'note three'],
+      message: '',
+      completed: ['1', '2']
+    };
+  }
 
-  switchFormInput = event => {
-    this.setState({
-      todos: { note: event.target.value, status: 0 }
+  addItem(e) {
+    e.preventDefault();
+    const { todos } = this.state;
+    const newItem = this.newItem.value;
+
+    const isOnTheList = todos.includes(newItem);
+
+    if (isOnTheList) {
+      this.setState({
+        message: 'This To-do is already on the list.'
+      });
+    } else {
+      newItem !== '' &&
+        this.setState({
+          todos: [...this.state.todos, newItem],
+          message: ''
+        });
+    }
+    this.addForm.reset();
+  }
+
+  completedItem(item) {
+    const newTodos = this.state.completed.filter(todo => {
+      return todo !== item;
     });
-  };
-
-  completedTask = event => {
     this.setState({
-      todos: { note: this.state.note, status: event.target.value }
+      completed: [...this.state.completed, item],
+      message: 'Added to completed list',
+      todos: [...newTodos]
     });
-  };
+  }
 
-  deleteTopicsHandler = () => {
-    const todos = [...this.state.todos];
-    this.setState({ todos: todos });
-  };
+  removeItem(item) {
+    const newTodos = this.state.completed.filter(todo => {
+      return todo !== item;
+    });
+    this.setState({
+      completed: [...newTodos]
+    });
+  }
 
   render() {
+    const { todos, message } = this.state;
     return (
       <div>
-        <button onClick={}>Add Task:</button>
-        <input changed={this.switchFormInput} />
-        <hr />
-        <p>Added Tasks:</p>
-        <p>Click to make complete:</p>
-        <ToDo
-          click={() => this.completedTask()}
-          changed={this.switchFormInput}
-        />
-        //if status = 1, show the todos as list: //also add:
-        <p>Completed tasks:</p>
-        <p>Click to delete:</p>
-        <ToDo click={() => this.deleteTopicsHandler()} />
+        <h1>To Do List:</h1>
+
+        <form
+          ref={input => (this.addForm = input)}
+          onSubmit={e => {
+            this.addItem(e);
+          }}
+        >
+          <div>
+            <label>Add New To-do Item</label>
+            <input
+              type="text"
+              placeholder="Type To-do Here"
+              id="newItemInput"
+              ref={input => (this.newItem = input)}
+            />
+            <button type="submit">Add</button>
+          </div>
+        </form>
+
+        <div>
+          {message !== '' && <p>{message}</p>}
+
+          <table>
+            <thead>
+              <tr>
+                <th>To-dos Not Completed:</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.todos.map(item => {
+                return (
+                  <tr key={item}>
+                    <td>{item}</td>
+                    <td>
+                      <button
+                        onClick={() => this.completedItem(item)}
+                        type="button"
+                      >
+                        Completed
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          <table>
+            <thead>
+              <tr>
+                <th>To-dos Completed:</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.completed.map(item => {
+                return (
+                  <tr key={item}>
+                    <td>{item}</td>
+                    <td>
+                      <button
+                        onClick={() => this.removeItem(item)}
+                        type="button"
+                      >
+                        Remove
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
