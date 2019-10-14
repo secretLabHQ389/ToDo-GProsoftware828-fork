@@ -11,6 +11,7 @@ export class App extends React.Component {
   }
 
   addItem(e) {
+    <div data-test="addItem"></div>;
     e.preventDefault();
     const { todos } = this.state;
     const newItem = this.newItem.value;
