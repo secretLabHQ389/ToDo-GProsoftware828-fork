@@ -1,8 +1,8 @@
 .ToDo {
-  width: 100%;
   padding: 2rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
   border: 2px solid lightblue;
   border-radius: 5px;
+  text-align: center;
 }

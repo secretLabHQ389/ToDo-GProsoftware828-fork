@@ -65,7 +65,7 @@ export class App extends React.Component {
     return (
       <div>
         <div className="CenterElems">
-          <h1>To Do List:</h1>
+          <h1 className="banner">To Do List:</h1>
         </div>
 
         <form
@@ -82,8 +82,11 @@ export class App extends React.Component {
               placeholder="Type To-do Here"
               id="newItemInput"
               ref={input => (this.newItem = input)}
+              className="input"
             />
-            <button type="submit">Add</button>
+            <button className="button" type="submit">
+              Add
+            </button>
           </div>
         </form>
 
