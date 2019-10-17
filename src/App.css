@@ -1,3 +1,8 @@
-.App {
+.Centered {
+  margin: auto;
+}
+
+.CenterElems {
   text-align: center;
+  margin: 1rem;
 }

@@ -1,20 +1,28 @@
 import React from 'react';
+import UniqueId from 'react-html-id';
+import { ToDo } from './ToDo/ToDo';
+import { Completed } from './Completed/Completed';
+import './App.css';
 
 export class App extends React.Component {
   constructor(props) {
     super(props);
+    UniqueId.enableUniqueIds(this);
     this.state = {
-      todos: ['note one', 'note two', 'note three'],
+      todos: [
+        { title: 'note one', id: '231r' },
+        { title: 'note two', id: 'efef' },
+        { title: 'note three', id: 'sd09s' }
+      ],
       message: '',
-      completed: ['1', '2']
+      completed: [{ title: '1', id: 'grhwg' }, { title: '2', id: '9joi' }]
     };
   }
 
   addItem(e) {
-    <div data-test="addItem"></div>;
     e.preventDefault();
     const { todos } = this.state;
-    const newItem = this.newItem.value;
+    const newItem = { title: this.newItem.value, id: this.nextUniqueId() };
 
     const isOnTheList = todos.includes(newItem);
 
@@ -33,7 +41,7 @@ export class App extends React.Component {
   }
 
   completedItem(item) {
-    const newTodos = this.state.completed.filter(todo => {
+    const newTodos = this.state.todos.filter(todo => {
       return todo !== item;
     });
     this.setState({
@@ -56,9 +64,12 @@ export class App extends React.Component {
     const { todos, message } = this.state;
     return (
       <div>
-        <h1>To Do List:</h1>
+        <div className="CenterElems">
+          <h1>To Do List:</h1>
+        </div>
 
         <form
+          className="CenterElems"
           ref={input => (this.addForm = input)}
           onSubmit={e => {
             this.addItem(e);
@@ -77,54 +88,46 @@ export class App extends React.Component {
         </form>
 
         <div>
-          {message !== '' && <p>{message}</p>}
+          {message !== '' && <p className="CenterElems">{message}</p>}
 
-          <table>
+          <table className="Centered">
             <thead>
               <tr>
                 <th>To-dos Not Completed:</th>
               </tr>
             </thead>
             <tbody>
-              {this.state.todos.map(item => {
-                return (
-                  <tr key={item}>
-                    <td>{item}</td>
-                    <td>
-                      <button
-                        onClick={() => this.completedItem(item)}
-                        type="button"
-                      >
-                        Completed
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
+              <tr>
+                <td>
+                  {this.state.todos.map(item => (
+                    <ToDo
+                      click={() => this.completedItem(item)}
+                      title={item.title}
+                      key={item.id}
+                    />
+                  ))}
+                </td>
+              </tr>
             </tbody>
           </table>
-          <table>
+          <table className="Centered">
             <thead>
               <tr>
                 <th>To-dos Completed:</th>
               </tr>
             </thead>
             <tbody>
-              {this.state.completed.map(item => {
-                return (
-                  <tr key={item}>
-                    <td>{item}</td>
-                    <td>
-                      <button
-                        onClick={() => this.removeItem(item)}
-                        type="button"
-                      >
-                        Remove
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
+              <tr>
+                <td>
+                  {this.state.completed.map(item => (
+                    <Completed
+                      click={() => this.removeItem(item)}
+                      title={item.title}
+                      key={item.id}
+                    />
+                  ))}
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>

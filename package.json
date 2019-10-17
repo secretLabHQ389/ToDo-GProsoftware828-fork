@@ -4,11 +4,13 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "enzyme": "^3.10.0",
+    "check-prop-types": "^1.1.2",
     "jquery": "^3.4.1",
     "popper.js": "^1.15.0",
+    "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
+    "react-html-id": "^0.1.5",
     "react-scripts": "3.2.0"
   },
   "scripts": {
@@ -31,5 +33,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1"
   }
 }

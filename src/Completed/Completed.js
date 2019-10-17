@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './ToDo.css';
+import './Completed.css';
 
-export class ToDo extends Component {
+export class Completed extends Component {
   render() {
     return (
       <div
-        className="ToDo"
+        className="Completed"
         onClick={this.props.click}
-        data-test="TodoComponent"
+        data-test="CompletedComponent"
       >
         <p data-test="titles">{this.props.title}</p>
-        <p data-test="clicker"> Click to Complete</p>
+        <p data-test="clicker"> Click to Remove</p>
       </div>
     );
   }
 }
 
-ToDo.propTypes = {
+Completed.propTypes = {
   title: PropTypes.string
 };
 
-export default ToDo;
+export default Completed;
