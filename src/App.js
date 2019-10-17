@@ -77,6 +77,8 @@ export class App extends React.Component {
         >
           <div>
             <label>Add New To-do Item</label>
+            <br />
+            <br />
             <input
               type="text"
               placeholder="Type To-do Here"
@@ -84,6 +86,7 @@ export class App extends React.Component {
               ref={input => (this.newItem = input)}
               className="input"
             />
+            <br />
             <button className="button" type="submit">
               Add
             </button>
