@@ -76,9 +76,6 @@ export class App extends React.Component {
           }}
         >
           <div>
-            <label>Add New To-do Item</label>
-            <br />
-            <br />
             <input
               type="text"
               placeholder="Type To-do Here"
@@ -87,9 +84,12 @@ export class App extends React.Component {
               className="input"
             />
             <br />
+            <br />
             <button className="button" type="submit">
               Add
             </button>
+            <br />
+            <br />
           </div>
         </form>
 
@@ -99,7 +99,7 @@ export class App extends React.Component {
           <table className="Centered">
             <thead>
               <tr>
-                <th>To-dos Not Completed:</th>
+                <th>To-dos (Click to Complete)</th>
               </tr>
             </thead>
             <tbody>
@@ -119,7 +119,7 @@ export class App extends React.Component {
           <table className="Centered">
             <thead>
               <tr>
-                <th>To-dos Completed:</th>
+                <th>Completed (Click to Delete)</th>
               </tr>
             </thead>
             <tbody>
