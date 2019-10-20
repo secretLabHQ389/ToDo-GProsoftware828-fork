@@ -3,6 +3,7 @@ import UniqueId from 'react-html-id';
 import { ToDo } from './ToDo/ToDo';
 import { Completed } from './Completed/Completed';
 import './App.css';
+import Plus from './assets/graphics/Plus.svg';
 
 export class App extends React.Component {
   constructor(props) {
@@ -15,7 +16,9 @@ export class App extends React.Component {
         { title: 'note three', id: 'sd09s' }
       ],
       message: '',
-      completed: [{ title: '1', id: 'grhwg' }, { title: '2', id: '9joi' }]
+      completed: [{ title: '1', id: 'grhwg' }, { title: '2', id: '9joi' }],
+      showForm: false,
+      showCompleted: false
     };
   }
 
@@ -60,48 +63,62 @@ export class App extends React.Component {
     });
   }
 
+  toggleInputHandler = () => {
+    const doesShow = this.state.showForm;
+    this.setState({ showForm: !doesShow });
+  };
+
+  toggleCompletedHandler = () => {
+    const doesShow = this.state.showCompleted;
+    this.setState({ showCompleted: !doesShow });
+  };
+
   render() {
     const { todos, message } = this.state;
     return (
       <div>
-        <div className="CenterElems">
-          <h1 className="banner">To Do List:</h1>
+        <div className="header">
+          <h1 className="banner">Your To-Do's</h1>
+
+          <img
+            src={Plus}
+            alt="plus_clickme_show_input_form"
+            onClick={this.toggleInputHandler}
+            className="plus"
+          />
+
+          {this.state.showForm === true ? (
+            <div className="inputForm">
+              <form
+                className="CenterElems"
+                ref={input => (this.addForm = input)}
+                onSubmit={e => {
+                  this.addItem(e);
+                }}
+              >
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Type To-do Here"
+                    id="newItemInput"
+                    ref={input => (this.newItem = input)}
+                    className="input"
+                  />
+                  <br />
+                  <br />
+                  <button className="button" type="submit">
+                    Add
+                  </button>
+                  <br />
+                  <br />
+                </div>
+              </form>
+            </div>
+          ) : null}
         </div>
 
-        <form
-          className="CenterElems"
-          ref={input => (this.addForm = input)}
-          onSubmit={e => {
-            this.addItem(e);
-          }}
-        >
-          <div>
-            <input
-              type="text"
-              placeholder="Type To-do Here"
-              id="newItemInput"
-              ref={input => (this.newItem = input)}
-              className="input"
-            />
-            <br />
-            <br />
-            <button className="button" type="submit">
-              Add
-            </button>
-            <br />
-            <br />
-          </div>
-        </form>
-
-        <div>
-          {message !== '' && <p className="CenterElems">{message}</p>}
-
-          <table className="Centered">
-            <thead>
-              <tr>
-                <th>To-dos (Click to Complete)</th>
-              </tr>
-            </thead>
+        <div className="block">
+          <table>
             <tbody>
               <tr>
                 <td>
@@ -116,26 +133,31 @@ export class App extends React.Component {
               </tr>
             </tbody>
           </table>
-          <table className="Centered">
-            <thead>
-              <tr>
-                <th>Completed (Click to Delete)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  {this.state.completed.map(item => (
-                    <Completed
-                      click={() => this.removeItem(item)}
-                      title={item.title}
-                      key={item.id}
-                    />
-                  ))}
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <button
+            className="completedBtn"
+            onClick={this.toggleCompletedHandler}
+          >
+            Show Completed
+          </button>
+          {this.state.showCompleted === true ? (
+            <div>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      {this.state.completed.map(item => (
+                        <Completed
+                          click={() => this.removeItem(item)}
+                          title={item.title}
+                          key={item.id}
+                        />
+                      ))}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          ) : null}
         </div>
       </div>
     );
