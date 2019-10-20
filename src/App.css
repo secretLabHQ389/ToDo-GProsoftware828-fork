@@ -8,6 +8,7 @@
   background: rgb(24, 9, 156);
   color: rgb(138, 136, 150);
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .banner {

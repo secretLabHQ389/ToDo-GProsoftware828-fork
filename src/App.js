@@ -90,7 +90,6 @@ export class App extends React.Component {
           {this.state.showForm === true ? (
             <div className="inputForm">
               <form
-                className="CenterElems"
                 ref={input => (this.addForm = input)}
                 onSubmit={e => {
                   this.addItem(e);
