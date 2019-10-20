@@ -24,6 +24,7 @@
 .plus {
   width: 2rem;
   margin-left: 2rem;
+  cursor: pointer;
 }
 
 .completedBtn {
@@ -33,6 +34,7 @@
   color: rgb(138, 136, 150);
   margin: 2rem;
   width: 25%;
+  cursor: pointer;
 }
 
 .block {
