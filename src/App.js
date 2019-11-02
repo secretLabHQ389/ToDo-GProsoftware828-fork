@@ -25,19 +25,21 @@ export class App extends React.Component {
   addItem(e) {
     e.preventDefault();
     const { todos } = this.state;
-    const newItem = { title: this.newItem.value, id: this.nextUniqueId() };
+    let newItem = { title: this.newItem.value };
 
-    const isOnTheList = todos.includes(newItem);
+    const isOnTheList = this.state.todos.includes(newItem); //try destructuring here
 
     if (isOnTheList) {
       this.setState({
         message: 'This To-do is already on the list.'
       });
     } else {
-      newItem !== '' &&
+      newItem =
+        { title: this.newItem.value, id: this.nextUniqueId() } &&
+        newItem !== '' &&
         this.setState({
           todos: [...this.state.todos, newItem],
-          message: ''
+          message: 'Added entry to to-do list'
         });
     }
     this.addForm.reset();
@@ -59,7 +61,8 @@ export class App extends React.Component {
       return todo !== item;
     });
     this.setState({
-      completed: [...newTodos]
+      completed: [...newTodos],
+      message: 'Deleted old to-do'
     });
   }
 
@@ -79,7 +82,7 @@ export class App extends React.Component {
       <div>
         <div className="header">
           <h1 className="banner">Your To-Do's</h1>
-
+          <p className="msg">{message}</p>
           <img
             src={Plus}
             alt="plus_clickme_show_input_form"

@@ -59,3 +59,8 @@
 .inputForm {
   margin-left: 2rem;
 }
+
+.msg {
+  color: green;
+  margin-left: 2rem;
+}
