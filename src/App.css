@@ -1,0 +1,166 @@
+.uncompleted {
+  margin-left: 2rem;
+}
+
+.button {
+  height: 3rem;
+  width: 9rem;
+  background: rgb(24, 9, 156);
+  color: rgb(138, 136, 150);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.banner {
+  font-style: oblique;
+  margin: 2rem;
+}
+
+.input {
+  border: 2px solid black;
+  border-radius: 5px;
+  margin-top: 1rem;
+  width: 60%;
+  height: 25px;
+}
+
+.plus {
+  width: 2rem;
+  cursor: pointer;
+}
+
+.completedBtn {
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: rgb(24, 9, 156);
+  color: rgb(138, 136, 150);
+  margin: 2rem;
+  width: 10rem;
+  cursor: pointer;
+}
+
+.block {
+  margin-top: 5rem;
+  margin-left: 10%;
+  margin-right: 10%;
+  color: black;
+}
+
+.header {
+  margin-top: 10%;
+  text-align: center;
+  color: black;
+}
+
+.msg {
+  color: green;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 20% auto 20%;
+  grid-template-rows: 18rem 10.5rem 10rem 7rem auto;
+}
+
+.item-main {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 5;
+}
+
+.item1 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  margin: auto;
+}
+
+.item2 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  margin: auto;
+}
+
+.item3 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  margin: auto;
+}
+
+.item4 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 4;
+  grid-row-end: 5;
+  margin: auto;
+}
+
+.item5 {
+  grid-column-start: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  margin: auto;
+}
+
+.item6 {
+  grid-column-start: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  margin: auto;
+}
+
+.item7 {
+  grid-column-start: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  margin: auto;
+}
+
+.item8 {
+  grid-column-start: 3;
+  grid-row-start: 4;
+  grid-row-end: 5;
+  margin: auto;
+}
+
+.dog {
+  width: 100%;
+}
+
+.pumpkins {
+  width: 100%;
+}
+
+.thanks {
+  width: 100%;
+}
+
+.basket {
+  width: 100%;
+}
+
+.xmastree {
+  width: 100%;
+}
+
+.santa {
+  width: 100%;
+}
+
+.july4th {
+  width: 100%;
+}
+
+.bunny {
+  width: 100%;
+}
+
+.kangaroo {
+  width: 100%;
+}
