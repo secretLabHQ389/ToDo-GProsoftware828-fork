@@ -2,6 +2,7 @@ import React from 'react';
 import UniqueId from 'react-html-id';
 import { ToDo } from './ToDo/ToDo';
 import { Completed } from './Completed/Completed';
+import ls from 'local-storage';
 import './App.css';
 import Plus from './assets/graphics/Plus.svg';
 
@@ -10,66 +11,78 @@ export class App extends React.Component {
     super(props);
     UniqueId.enableUniqueIds(this);
     this.state = {
-      todos: [
+      todos: ls.get('toDos') || [
         { title: 'note one', id: '231r' },
         { title: 'note two', id: 'efef' },
         { title: 'note three', id: 'sd09s' }
       ],
       message: '',
-      completed: [{ title: '1', id: 'grhwg' }, { title: '2', id: '9joi' }],
+      completed: ls.get('completeds') || [
+        { title: '1', id: 'grhwg' },
+        { title: '2', id: '9joi' }
+      ],
       showForm: false,
       showCompleted: false
     };
   }
 
-  addItem(e) {
+  async addItem(e) {
     e.preventDefault();
-    const { todos } = this.state;
     let newItem = { title: this.newItem.value };
-
-    const isOnTheList = this.state.todos.includes(newItem); //try destructuring here
-
+    const isOnTheList = this.state.todos.includes(newItem);
     if (isOnTheList) {
-      setTimeout(() => {
-        this.setState({
-          message: 'This To-do is already on the list.'
-        });
-      }, 1000);
+      this.setState({
+        message: 'This To-do is already on the list.'
+      });
     } else {
       newItem =
         { title: this.newItem.value, id: this.nextUniqueId() } &&
         newItem !== '' &&
         this.setState({
-          todos: [...this.state.todos, newItem]
-        }) &&
-        setTimeout(() => {
-          this.setState({
-            message: 'Added entry to to-do list'
-          });
-        }, 1000);
+          todos: [...this.state.todos, newItem],
+          message: 'Added entry to to-do list'
+        });
+      await localStorage.setItem('toDos', JSON.stringify(this.state.todos));
     }
     this.addForm.reset();
+    await localStorage.setItem('toDos', JSON.stringify(this.state.todos));
+    const store = await localStorage.getItem('toDos');
+    const newTodos = JSON.parse(store);
   }
 
-  completedItem(item) {
+  async completedItem(item) {
     const newTodos = this.state.todos.filter(todo => {
       return todo !== item;
     });
-    this.setState({
-      completed: [...this.state.completed, item],
-      message: 'Added to completed list',
-      todos: [...newTodos]
-    });
+    if (1 === 1) {
+      this.setState({
+        completed: [...this.state.completed, item],
+        message: 'Added to completed list',
+        todos: [...newTodos]
+      });
+      await localStorage.setItem(
+        'completeds',
+        JSON.stringify(this.state.completed)
+      );
+      await localStorage.setItem('toDos', JSON.stringify([...newTodos]));
+    }
+    await localStorage.setItem('toDos', JSON.stringify([...newTodos]));
+    const completedStore = await localStorage.getItem('completeds');
   }
 
-  removeItem(item) {
+  async removeItem(item) {
     const newTodos = this.state.completed.filter(todo => {
       return todo !== item;
     });
-    this.setState({
-      completed: [...newTodos],
-      message: 'Deleted old to-do'
-    });
+    if (1 === 1) {
+      this.setState({
+        completed: [...newTodos],
+        message: 'Deleted old to-do'
+      });
+      await localStorage.setItem('completeds', JSON.stringify([...newTodos]));
+    }
+    await localStorage.setItem('completeds', JSON.stringify([...newTodos]));
+    const completedRemovals = await localStorage.getItem('completeds');
   }
 
   toggleInputHandler = () => {
