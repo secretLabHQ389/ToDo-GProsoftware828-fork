@@ -2,6 +2,10 @@
   margin-left: 2rem;
 }
 
+.item-main {
+  background-image: url('./assets/images/sydney-opera.jpg');
+}
+
 .button {
   height: 3rem;
   width: 9rem;
@@ -127,6 +131,13 @@
   grid-row-start: 4;
   grid-row-end: 5;
   margin: auto;
+}
+
+.item9 {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
 }
 
 .dog {

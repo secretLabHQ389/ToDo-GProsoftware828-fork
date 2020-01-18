@@ -121,6 +121,16 @@ export class App extends React.Component {
       <div className="container">
         <div className="item1">
           <img src={dog} className="dog" alt="dog in ghost outfit" />
+          <p>
+            Photo by{' '}
+            <a href="https://burst.shopify.com/@sarahpflugphoto?utm_campaign=photo_credit&amp;utm_content=Browse+Free+HD+Images+of+Cute+Halloween+Dog+Ghost+Costume&amp;utm_medium=referral&amp;utm_source=credit">
+              Sarah Pflug
+            </a>{' '}
+            from{' '}
+            <a href="https://burst.shopify.com/halloween?utm_campaign=photo_credit&amp;utm_content=Browse+Free+HD+Images+of+Cute+Halloween+Dog+Ghost+Costume&amp;utm_medium=referral&amp;utm_source=credit">
+              Burst
+            </a>
+          </p>
         </div>
         <div className="item2">
           <img
@@ -134,6 +144,16 @@ export class App extends React.Component {
         </div>
         <div className="item4">
           <img src={basket} className="basket" alt="Easter basket" />
+          <p>
+            Photo by{' '}
+            <a href="https://burst.shopify.com/@sarahpflugphoto?utm_campaign=photo_credit&amp;utm_content=Free+Chocolate+Bunny+Basket+Photo+%E2%80%94+High+Res+Pictures&amp;utm_medium=referral&amp;utm_source=credit">
+              Sarah Pflug
+            </a>{' '}
+            from{' '}
+            <a href="https://burst.shopify.com/chocolate?utm_campaign=photo_credit&amp;utm_content=Free+Chocolate+Bunny+Basket+Photo+%E2%80%94+High+Res+Pictures&amp;utm_medium=referral&amp;utm_source=credit">
+              Burst
+            </a>
+          </p>
         </div>
         <div className="item5">
           <img
@@ -153,100 +173,118 @@ export class App extends React.Component {
           />
         </div>
         <div className="item8">
-          <img
-            src={bunny}
-            className="bunny"
-            alt="bunny in grass hears floppy"
-          />
+          <img src={bunny} className="bunny" alt="bunny in grass ears floppy" />
+          <p>
+            Image by{' '}
+            <a href="https://pixabay.com/users/Heidelbergerin-1425977/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4375952">
+              Heidelbergerin
+            </a>{' '}
+            from{' '}
+            <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4375952">
+              Pixabay
+            </a>
+          </p>
         </div>
-        <div className="item-main">
-          <div className="header">
-            <h1 className="banner">Your To-Do's</h1>
-            <p className="msg">{message}</p>
-            <img
-              src={Plus}
-              alt="plus_clickme_show_input_form"
-              onClick={this.toggleInputHandler}
-              className="plus"
-            />
-            {this.state.showForm === true ? (
-              <div className="inputForm">
-                <form
-                  ref={input => (this.addForm = input)}
-                  onSubmit={e => {
-                    this.addItem(e);
-                  }}
-                >
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Type to-do here"
-                      id="newItemInput"
-                      ref={input => (this.newItem = input)}
-                      className="input"
-                    />
-                    <br />
-                    <br />
-                    <button className="button" type="submit">
-                      Add
-                    </button>
-                    <br />
-                    <br />
-                  </div>
-                </form>
-              </div>
-            ) : null}
-          </div>
-          <div className="block">
-            <table>
-              <tbody>
-                <tr>
-                  <td>
-                    {this.state.todos.map(item => (
-                      <ToDo
-                        click={() => this.completedItem(item)}
-                        title={item.title}
-                        key={item.id}
+        <div className="item9">
+          <div className="item-main">
+            <div className="header">
+              <h1 className="banner">Your To-Do's</h1>
+              <p className="msg">{message}</p>
+              <img
+                src={Plus}
+                alt="plus_clickme_show_input_form"
+                onClick={this.toggleInputHandler}
+                className="plus"
+              />
+              {this.state.showForm === true ? (
+                <div className="inputForm">
+                  <form
+                    ref={input => (this.addForm = input)}
+                    onSubmit={e => {
+                      this.addItem(e);
+                    }}
+                  >
+                    <div>
+                      <input
+                        type="text"
+                        placeholder="Type to-do here"
+                        id="newItemInput"
+                        ref={input => (this.newItem = input)}
+                        className="input"
                       />
-                    ))}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <button
-              className="completedBtn"
-              onClick={this.toggleCompletedHandler}
-            >
-              Show/Hide Completed
-            </button>
-            {this.state.showCompleted === true ? (
-              <div>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>
-                        {this.state.completed.map(item => (
-                          <Completed
-                            click={() => this.removeItem(item)}
-                            title={item.title}
-                            key={item.id}
-                          />
-                        ))}
-                      </td>
-                    </tr>
-                    <tr>
-                      <p>I can do more to-do's, kangar-youu?</p>
-                      <img
-                        src={kangaroo}
-                        className="kangaroo"
-                        alt="friendly kangaroo"
-                      />
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            ) : null}
+                      <br />
+                      <br />
+                      <button className="button" type="submit">
+                        Add
+                      </button>
+                      <br />
+                      <br />
+                    </div>
+                  </form>
+                </div>
+              ) : null}
+            </div>
+            <div className="block">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      {this.state.todos.map(item => (
+                        <ToDo
+                          click={() => this.completedItem(item)}
+                          title={item.title}
+                          key={item.id}
+                        />
+                      ))}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <button
+                className="completedBtn"
+                onClick={this.toggleCompletedHandler}
+              >
+                Show/Hide Completed
+              </button>
+              {this.state.showCompleted === true ? (
+                <div>
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td>
+                          {this.state.completed.map(item => (
+                            <Completed
+                              click={() => this.removeItem(item)}
+                              title={item.title}
+                              key={item.id}
+                            />
+                          ))}
+                        </td>
+                      </tr>
+                      <tr>
+                        <p>I can do more to-do's, kangar-youu?</p>
+                        <img
+                          src={kangaroo}
+                          className="kangaroo"
+                          alt="friendly kangaroo"
+                        />
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              ) : null}
+            </div>
           </div>
+          <p>
+            Photo by{' '}
+            <a href="https://burst.shopify.com/@scott_5x5?utm_campaign=photo_credit&amp;utm_content=High+Res+Sydney+Opera+House+And+Harbor+Picture+%E2%80%94+Free+Images&amp;utm_medium=referral&amp;utm_source=credit">
+              Scott Murdoch
+            </a>{' '}
+            from{' '}
+            <a href="https://burst.shopify.com/australia?utm_campaign=photo_credit&amp;utm_content=High+Res+Sydney+Opera+House+And+Harbor+Picture+%E2%80%94+Free+Images&amp;utm_medium=referral&amp;utm_source=credit">
+              Burst
+            </a>
+          </p>
         </div>
       </div>
     );
