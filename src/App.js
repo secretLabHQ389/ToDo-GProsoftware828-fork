@@ -66,8 +66,17 @@ export class App extends React.Component {
       );
       await localStorage.setItem('toDos', JSON.stringify([...newTodos]));
     }
+    await localStorage.setItem(
+      'completeds',
+      JSON.stringify(this.state.completed)
+    );
     await localStorage.setItem('toDos', JSON.stringify([...newTodos]));
     const completedStore = await localStorage.getItem('completeds');
+    // this.setState({
+    //   completedLS: [...completedStore]
+    // });
+    console.log('Here is get ');
+    console.log(JSON.parse(completedStore));
   }
 
   async removeItem(item) {
