@@ -2,10 +2,6 @@
   margin-left: 2rem;
 }
 
-.item-main {
-  background-image: url('./assets/images/sydney-opera.jpg');
-}
-
 .button {
   height: 3rem;
   width: 9rem;
@@ -23,13 +19,12 @@
 .input {
   border: 2px solid black;
   border-radius: 5px;
-  margin-top: 1rem;
-  width: 60%;
-  height: 25px;
+  width: 30%;
 }
 
 .plus {
   width: 2rem;
+  margin-left: 2rem;
   cursor: pointer;
 }
 
@@ -39,139 +34,33 @@
   background-color: rgb(24, 9, 156);
   color: rgb(138, 136, 150);
   margin: 2rem;
-  width: 10rem;
+  width: 25%;
   cursor: pointer;
 }
 
 .block {
-  margin-top: 5rem;
-  margin-left: 10%;
-  margin-right: 10%;
-  color: black;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  background-color: black;
+  margin-left: 20%;
+  margin-right: 20%;
+  color: white;
 }
 
 .header {
-  margin-top: 10%;
-  text-align: center;
-  color: black;
+  background-color: rgb(138, 136, 150);
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  margin-left: 20%;
+  margin-right: 20%;
+  color: white;
+}
+
+.inputForm {
+  margin-left: 2rem;
 }
 
 .msg {
   color: green;
-}
-
-.container {
-  display: grid;
-  grid-template-columns: 20% auto 20%;
-  grid-template-rows: 18rem 10.5rem 10rem 7rem auto;
-}
-
-.item-main {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 5;
-}
-
-.item1 {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  margin: auto;
-}
-
-.item2 {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 2;
-  grid-row-end: 3;
-  margin: auto;
-}
-
-.item3 {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 3;
-  grid-row-end: 4;
-  margin: auto;
-}
-
-.item4 {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 4;
-  grid-row-end: 5;
-  margin: auto;
-}
-
-.item5 {
-  grid-column-start: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  margin: auto;
-}
-
-.item6 {
-  grid-column-start: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
-  margin: auto;
-}
-
-.item7 {
-  grid-column-start: 3;
-  grid-row-start: 3;
-  grid-row-end: 4;
-  margin: auto;
-}
-
-.item8 {
-  grid-column-start: 3;
-  grid-row-start: 4;
-  grid-row-end: 5;
-  margin: auto;
-}
-
-.item9 {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 3;
-}
-
-.dog {
-  width: 100%;
-}
-
-.pumpkins {
-  width: 100%;
-}
-
-.thanks {
-  width: 100%;
-}
-
-.basket {
-  width: 100%;
-}
-
-.xmastree {
-  width: 100%;
-}
-
-.santa {
-  width: 100%;
-}
-
-.july4th {
-  width: 100%;
-}
-
-.bunny {
-  width: 100%;
-}
-
-.kangaroo {
-  width: 100%;
+  margin-left: 2rem;
 }

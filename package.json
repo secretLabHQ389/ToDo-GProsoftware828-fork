@@ -42,5 +42,13 @@
   "devDependencies": {
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GProSoftware828/ToDoReact.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GProSoftware828/ToDoReact/issues"
+  },
+  "homepage": "https://github.com/GProSoftware828/ToDoReact#readme"
 }

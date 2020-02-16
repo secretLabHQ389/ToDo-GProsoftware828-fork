@@ -2,18 +2,9 @@ import React from 'react';
 import UniqueId from 'react-html-id';
 import { ToDo } from './ToDo/ToDo';
 import { Completed } from './Completed/Completed';
+import ls from 'local-storage';
 import './App.css';
 import Plus from './assets/graphics/Plus.svg';
-import ls from 'local-storage';
-import dog from './assets/images/dog.jpg';
-import basket from './assets/images/basket.jpg';
-import bunny from './assets/images/bunny.jpg';
-import july4th from './assets/images/july4th.jpg';
-import pumpkins from './assets/images/pumpkins.jpg';
-import santa from './assets/images/santa.jpg';
-import thanks from './assets/images/thanks.jpg';
-import xmastree from './assets/images/xmastree.jpg';
-import kangaroo from './assets/images/kangaroo.jpg';
 
 export class App extends React.Component {
   constructor(props) {
@@ -21,16 +12,14 @@ export class App extends React.Component {
     UniqueId.enableUniqueIds(this);
     this.state = {
       todos: ls.get('toDos') || [
-        { title: 'Click on the Add icon above to show/hide the to-do form' },
-        {
-          title:
-            'Then click on me to make it complete and check them at the button below'
-        }
+        { title: 'note one', id: '231r' },
+        { title: 'note two', id: 'efef' },
+        { title: 'note three', id: 'sd09s' }
       ],
       message: '',
       completed: ls.get('completeds') || [
-        { title: 'Imagine your task completed like me!' },
-        { title: 'Click on me to delete forever!' }
+        { title: '1', id: 'grhwg' },
+        { title: '2', id: '9joi' }
       ],
       showForm: false,
       showCompleted: false
@@ -40,7 +29,7 @@ export class App extends React.Component {
   async addItem(e) {
     e.preventDefault();
     let newItem = { title: this.newItem.value };
-    const isOnTheList = this.state.todos.includes(newItem); //try destructuring here
+    const isOnTheList = this.state.todos.includes(newItem);
     if (isOnTheList) {
       this.setState({
         message: 'This To-do is already on the list.'
@@ -53,17 +42,14 @@ export class App extends React.Component {
           todos: [...this.state.todos, newItem],
           message: 'Added entry to to-do list'
         });
-      await console.log(this.state.todos);
       await localStorage.setItem('toDos', JSON.stringify(this.state.todos));
     }
     this.addForm.reset();
     await localStorage.setItem('toDos', JSON.stringify(this.state.todos));
-    await console.log(this.state.todos);
     const store = await localStorage.getItem('toDos');
-    console.log(JSON.parse(store));
     const newTodos = JSON.parse(store);
-    //this.setState({ todos: newTodos });
   }
+
   async completedItem(item) {
     const newTodos = this.state.todos.filter(todo => {
       return todo !== item;
@@ -99,14 +85,14 @@ export class App extends React.Component {
     if (1 === 1) {
       this.setState({
         completed: [...newTodos],
-        message: 'Deleted to-do from archived list'
+        message: 'Deleted old to-do'
       });
       await localStorage.setItem('completeds', JSON.stringify([...newTodos]));
     }
     await localStorage.setItem('completeds', JSON.stringify([...newTodos]));
     const completedRemovals = await localStorage.getItem('completeds');
-    console.log(JSON.parse(completedRemovals));
   }
+
   toggleInputHandler = () => {
     const doesShow = this.state.showForm;
     this.setState({ showForm: !doesShow });
@@ -115,123 +101,81 @@ export class App extends React.Component {
     const doesShow = this.state.showCompleted;
     this.setState({ showCompleted: !doesShow });
   };
+
   render() {
     const { todos, message } = this.state;
     return (
-      <div className="container">
-        <div className="item1">
-          <img src={dog} className="dog" alt="dog in ghost outfit" />
-          <p>
-            Photo by{' '}
-            <a href="https://burst.shopify.com/@sarahpflugphoto?utm_campaign=photo_credit&amp;utm_content=Browse+Free+HD+Images+of+Cute+Halloween+Dog+Ghost+Costume&amp;utm_medium=referral&amp;utm_source=credit">
-              Sarah Pflug
-            </a>{' '}
-            from{' '}
-            <a href="https://burst.shopify.com/halloween?utm_campaign=photo_credit&amp;utm_content=Browse+Free+HD+Images+of+Cute+Halloween+Dog+Ghost+Costume&amp;utm_medium=referral&amp;utm_source=credit">
-              Burst
-            </a>
-          </p>
-        </div>
-        <div className="item2">
+      <div>
+        <div className="header">
+          <h1 className="banner">Your To-Do's</h1>
+          <p className="msg">{message}</p>
           <img
-            src={pumpkins}
-            className="pumpkins"
-            alt="pumpkins and haybails on farm"
+            src={Plus}
+            alt="plus_clickme_show_input_form"
+            onClick={this.toggleInputHandler}
+            className="plus"
           />
-        </div>
-        <div className="item3">
-          <img src={thanks} className="thanks" alt="thanksgiving spread" />
-        </div>
-        <div className="item4">
-          <img src={basket} className="basket" alt="Easter basket" />
-          <p>
-            Photo by{' '}
-            <a href="https://burst.shopify.com/@sarahpflugphoto?utm_campaign=photo_credit&amp;utm_content=Free+Chocolate+Bunny+Basket+Photo+%E2%80%94+High+Res+Pictures&amp;utm_medium=referral&amp;utm_source=credit">
-              Sarah Pflug
-            </a>{' '}
-            from{' '}
-            <a href="https://burst.shopify.com/chocolate?utm_campaign=photo_credit&amp;utm_content=Free+Chocolate+Bunny+Basket+Photo+%E2%80%94+High+Res+Pictures&amp;utm_medium=referral&amp;utm_source=credit">
-              Burst
-            </a>
-          </p>
-        </div>
-        <div className="item5">
-          <img
-            src={xmastree}
-            className="xmastree"
-            alt="Christmas tree inside"
-          />
-        </div>
-        <div className="item6">
-          <img src={santa} className="santa" alt="Santa and Mrs. Claus" />
-        </div>
-        <div className="item7">
-          <img
-            src={july4th}
-            className="july4th"
-            alt="July fourth flag on star title"
-          />
-        </div>
-        <div className="item8">
-          <img src={bunny} className="bunny" alt="bunny in grass ears floppy" />
-          <p>
-            Image by{' '}
-            <a href="https://pixabay.com/users/Heidelbergerin-1425977/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4375952">
-              Heidelbergerin
-            </a>{' '}
-            from{' '}
-            <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4375952">
-              Pixabay
-            </a>
-          </p>
-        </div>
-        <div className="item9">
-          <div className="item-main">
-            <div className="header">
-              <h1 className="banner">Your To-Do's</h1>
-              <p className="msg">{message}</p>
-              <img
-                src={Plus}
-                alt="plus_clickme_show_input_form"
-                onClick={this.toggleInputHandler}
-                className="plus"
-              />
-              {this.state.showForm === true ? (
-                <div className="inputForm">
-                  <form
-                    ref={input => (this.addForm = input)}
-                    onSubmit={e => {
-                      this.addItem(e);
-                    }}
-                  >
-                    <div>
-                      <input
-                        type="text"
-                        placeholder="Type to-do here"
-                        id="newItemInput"
-                        ref={input => (this.newItem = input)}
-                        className="input"
-                      />
-                      <br />
-                      <br />
-                      <button className="button" type="submit">
-                        Add
-                      </button>
-                      <br />
-                      <br />
-                    </div>
-                  </form>
+
+          {this.state.showForm === true ? (
+            <div className="inputForm">
+              <form
+                ref={input => (this.addForm = input)}
+                onSubmit={e => {
+                  this.addItem(e);
+                }}
+              >
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Type To-do Here"
+                    id="newItemInput"
+                    ref={input => (this.newItem = input)}
+                    className="input"
+                  />
+                  <br />
+                  <br />
+                  <button className="button" type="submit">
+                    Add
+                  </button>
+                  <br />
+                  <br />
                 </div>
-              ) : null}
+              </form>
             </div>
-            <div className="block">
+          ) : null}
+        </div>
+
+        <div className="block">
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  {this.state.todos.map(item => (
+                    <ToDo
+                      click={() => this.completedItem(item)}
+                      title={item.title}
+                      key={item.id}
+                    />
+                  ))}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <button
+            className="completedBtn"
+            onClick={this.toggleCompletedHandler}
+          >
+            Show Completed
+          </button>
+          {this.state.showCompleted === true ? (
+            <div>
               <table>
                 <tbody>
                   <tr>
                     <td>
-                      {this.state.todos.map(item => (
-                        <ToDo
-                          click={() => this.completedItem(item)}
+                      {this.state.completed.map(item => (
+                        <Completed
+                          click={() => this.removeItem(item)}
                           title={item.title}
                           key={item.id}
                         />
@@ -240,51 +184,8 @@ export class App extends React.Component {
                   </tr>
                 </tbody>
               </table>
-              <button
-                className="completedBtn"
-                onClick={this.toggleCompletedHandler}
-              >
-                Show/Hide Completed
-              </button>
-              {this.state.showCompleted === true ? (
-                <div>
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td>
-                          {this.state.completed.map(item => (
-                            <Completed
-                              click={() => this.removeItem(item)}
-                              title={item.title}
-                              key={item.id}
-                            />
-                          ))}
-                        </td>
-                      </tr>
-                      <tr>
-                        <p>I can do more to-do's, kangar-youu?</p>
-                        <img
-                          src={kangaroo}
-                          className="kangaroo"
-                          alt="friendly kangaroo"
-                        />
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              ) : null}
             </div>
-          </div>
-          <p>
-            Photo by{' '}
-            <a href="https://burst.shopify.com/@scott_5x5?utm_campaign=photo_credit&amp;utm_content=High+Res+Sydney+Opera+House+And+Harbor+Picture+%E2%80%94+Free+Images&amp;utm_medium=referral&amp;utm_source=credit">
-              Scott Murdoch
-            </a>{' '}
-            from{' '}
-            <a href="https://burst.shopify.com/australia?utm_campaign=photo_credit&amp;utm_content=High+Res+Sydney+Opera+House+And+Harbor+Picture+%E2%80%94+Free+Images&amp;utm_medium=referral&amp;utm_source=credit">
-              Burst
-            </a>
-          </p>
+          ) : null}
         </div>
       </div>
     );
