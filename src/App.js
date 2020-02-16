@@ -103,7 +103,7 @@ export class App extends React.Component {
   };
 
   render() {
-    const { todos, message } = this.state;
+    const { todos, completed, message } = this.state;
     return (
       <div>
         <div className="header">
@@ -150,7 +150,7 @@ export class App extends React.Component {
             <tbody>
               <tr>
                 <td>
-                  {this.state.todos.map(item => (
+                  {todos.map(item => (
                     <ToDo
                       click={() => this.completedItem(item)}
                       title={item.title}
@@ -173,7 +173,7 @@ export class App extends React.Component {
                 <tbody>
                   <tr>
                     <td>
-                      {this.state.completed.map(item => (
+                      {completed.map(item => (
                         <Completed
                           click={() => this.removeItem(item)}
                           title={item.title}
