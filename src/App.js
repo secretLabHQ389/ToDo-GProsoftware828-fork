@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useMemo} from 'react'
 import { ToDo } from './ToDo/ToDo'
 import { Completed } from './Completed/Completed'
 import ls from 'local-storage'
@@ -38,9 +38,7 @@ export const App = () => {
       })
       await localStorage.setItem('toDos', JSON.stringify(state.todos))
     }
-    await localStorage.setItem('toDos', JSON.stringify(state.todos))
     const store = await localStorage.getItem('toDos')
-    const newTodos = JSON.parse(store)
   }
 
   const completedItem = async (item) => {
@@ -64,7 +62,6 @@ export const App = () => {
       JSON.stringify(state.completed)
     )
     await localStorage.setItem('toDos', JSON.stringify([...newTodos]))
-    const completedStore = await localStorage.getItem('completeds')
   }
 
   const removeItem = async (item) => {
@@ -79,7 +76,6 @@ export const App = () => {
       await localStorage.setItem('completeds', JSON.stringify([...newTodos]))
     }
     await localStorage.setItem('completeds', JSON.stringify([...newTodos]))
-    const completedRemovals = await localStorage.getItem('completeds')
   }
 
   const toggleInputHandler = () => {
@@ -93,6 +89,24 @@ export const App = () => {
   }
 
   const { todos, completed, message } = state
+
+  const memoTodoList = useMemo(() => todos.map(item => {
+    return (
+      <ToDo
+        click={() => completedItem(item)}
+        title={item.title}
+        key={item.id}
+      />)
+  }),[todos])
+
+  const memoCompletedList = useMemo(() => completed.map(item => {
+    return (
+      <Completed
+        click={() => removeItem(item)}
+        title={item.title}
+        key={item.id}
+      />)
+  }),[completed])
 
   return (
     <div>
@@ -142,13 +156,7 @@ export const App = () => {
           <tbody>
             <tr>
               <td>
-                {todos.map(item => (
-                  <ToDo
-                    click={() => completedItem(item)}
-                    title={item.title}
-                    key={item.id}
-                  />
-                ))}
+                {memoTodoList}
               </td>
             </tr>
           </tbody>
@@ -165,13 +173,7 @@ export const App = () => {
               <tbody>
                 <tr>
                   <td>
-                    {completed.map(item => (
-                      <Completed
-                        click={() => removeItem(item)}
-                        title={item.title}
-                        key={item.id}
-                      />
-                    ))}
+                    {memoCompletedList}
                   </td>
                 </tr>
               </tbody>
