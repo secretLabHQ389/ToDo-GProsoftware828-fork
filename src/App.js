@@ -25,7 +25,13 @@ export const App = () => {
 
   const addItem = async (e) => {
     e.preventDefault()
-    const isOnTheList = state.todos.includes(newItem)
+
+    let titles = []
+    state.todos.map(todo => {
+      titles.push(todo.title)
+    })
+
+    const isOnTheList = titles.includes(newItem)
     const addedItem = { title: newItem, id: Math.random() }
     if (isOnTheList) {
       setState({...state,
@@ -38,6 +44,7 @@ export const App = () => {
       })
       await localStorage.setItem('toDos', JSON.stringify(state.todos))
     }
+    await localStorage.setItem('toDos', JSON.stringify(state.todos))
     const store = await localStorage.getItem('toDos')
   }
 
@@ -62,6 +69,7 @@ export const App = () => {
       JSON.stringify(state.completed)
     )
     await localStorage.setItem('toDos', JSON.stringify([...newTodos]))
+    const completedStore = await localStorage.getItem('completeds')
   }
 
   const removeItem = async (item) => {
@@ -76,6 +84,7 @@ export const App = () => {
       await localStorage.setItem('completeds', JSON.stringify([...newTodos]))
     }
     await localStorage.setItem('completeds', JSON.stringify([...newTodos]))
+    const completedRemovals = await localStorage.getItem('completeds')
   }
 
   const toggleInputHandler = () => {
